@@ -2,12 +2,32 @@
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 </head>
+<title>1jio</title>
 <script>
-    
+function exit(){
+	alert("退出啦");
+	var ua = navigator.userAgent;
+    var isWeixin = !!/MicroMessenger/i.test(ua);
+	var isAplipay = !!/AlipayClient/i.test(ua);
+  //判断是否是微信访问
+  if(isWeixin){
+    alert("这是微信");
+	window.WeixinJSBridge.call('closeWindow')
+  }else if(isAplipay){
+    alert("这是支付宝");
+	window.AlipayJSBridge.call('closeWebview')	
+  }else{
+    alert("。。。")
+  }
+}
+
 </script>
+<style>
+	
+</style>
 <body>
-   文本框限制长度测试<br>
-   <input type="tel" placeholder="短信验证码" maxlength="6" ><br>
-    <input type="tel" placeholder="短信验证码" oninput="if(value.length>6)value=value.slice(0,6)">
+   <h1>退出微信支付宝页面测试</h1>
+   <input type="button" id="exit" value="退出啦" onclick="exit()">
+   
 </body>
 </html>
